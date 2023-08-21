@@ -1,0 +1,80 @@
+.auth-form-container,
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  background-color: #3d7685;
+}
+
+label {
+  text-align: left;
+  padding: 0.25 rem 0;
+  font-size: 20px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+  .auth-form-container {
+    padding: 1.5rem;
+    border-radius: 35px;
+    margin: 3 rem;
+  }
+}
+
+#email {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#username {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+#password {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.link-btn {
+  background: none;
+  margin-top: 10px;
+  color: white;
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #3d7685;
+  margin: 15px;
+}
+
+.auth-form-container h2 {
+  color: white;
+  font-size: 45px;
+  margin: 10px;
+}

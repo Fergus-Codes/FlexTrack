@@ -21,7 +21,7 @@ db.once("open", async () => {
         }
       );
     }
-    console.log("Seeding completed");
+    console.log("Seeding has been completed! ");
     process.exit(0);
   } catch (err) {
     throw err;

@@ -30,14 +30,14 @@ const resolvers = {
 
       if (!user) {
         throw new AuthenticationError(
-          "User was not found with this email... Please try again!"
+          "A user with this email address does not exist!"
         );
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Please check the credentials!");
+        throw new AuthenticationError("Incorrect credentials!");
       }
 
       const token = signToken(user);
