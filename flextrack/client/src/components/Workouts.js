@@ -21,7 +21,7 @@ const Workouts = ({ workoutArray, setWorkout }) => {
           <p>
             {workout}
             <button onClick={makeButtonFunction(i)} className="btn">
-              -
+              ❌
             </button>
           </p>
         </div>

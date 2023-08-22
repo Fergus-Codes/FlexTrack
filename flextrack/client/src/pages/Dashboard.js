@@ -6,7 +6,7 @@ import History from "../components/History";
 const Dashboard = () => {
   return (
     <header>
-      <h1 className="header peak">Welcome to FlexTrack</h1>
+      <h1 className="header peak">🏋 Welcome to FlexTrack 💪</h1>
       <div className="cards-wrap">
         <div className="card">
           <DashboardWorkout />

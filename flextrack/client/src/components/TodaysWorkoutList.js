@@ -1,8 +1,7 @@
-import SelectSet from "./SelectSet";
-import SelectRepsWeight from "./SelectRepsWeight";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Auth from "./utils/auth";
-import React, { useState } from "react";
+import WorkoutBuilder from "./WorkoutBuilder";
 
 import { ADD_WORKOUT } from "../components/utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -15,6 +14,8 @@ const TodaysWorkoutList = () => {
 
   const storeWorkout = async (e) => {
     const inputExercises = [];
+    const currentDate = new Date();
+
     for (let i = 0; i < storedworkouts.length; i++) {
       let tempInput = {
         workout_name: "n/a",
@@ -27,62 +28,42 @@ const TodaysWorkoutList = () => {
 
       inputExercises.push(tempInput);
     }
-    console.log(inputExercises);
+
     e.preventDefault();
 
     try {
       await workout({
         exercise: inputExercises,
+        date: currentDate.toISOString(),
       });
     } catch (e) {
       console.log(e);
     }
   };
+
   return (
     <div>
       <div className="card-inner-today">
         {exercises.map((exercise, i) => (
           <>
             <div className="sleeve">
-              <p>{exercise}</p>{" "}
-              <SelectSet
+              <h2 className="your-workout-title">{exercise}</h2>{" "}
+              <WorkoutBuilder
+                numSets={exercise.numberOfSets}
+                exerciseIndex={i}
                 exercises={exercises}
                 setExercises={setExercises}
-                i={i}
-              />{" "}
-              <SelectRepsWeight />
-              {exercise.numberOfSets === 2 ? (
-                <>
-                  <SelectRepsWeight />
-                </>
-              ) : exercise.numberOfSets === 3 ? (
-                <>
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                </>
-              ) : exercise.numberOfSets === 4 ? (
-                <>
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                </>
-              ) : exercise.numberOfSets === 5 ? (
-                <>
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                  <SelectRepsWeight />
-                </>
-              ) : (
-                ""
-              )}
+              />
             </div>
           </>
         ))}
       </div>
       <div className="footer2">
-        <Link to="/builder">Go Back</Link>
-        <Link to="/dashboard">Save</Link>
+        <Link to="/builder">Back</Link>
+        <Link to="/dashboard" onClick={storeWorkout}>
+          Save
+        </Link>{" "}
+        {/* Attach onClick event */}
       </div>
     </div>
   );

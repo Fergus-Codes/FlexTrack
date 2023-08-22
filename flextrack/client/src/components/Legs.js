@@ -1,8 +1,6 @@
 import React from "react";
 import Button from "./Button";
 
-// onDelete
-// onClick={() => onDelete(addExercise)}
 
 const Legs = ({ addExercise }) => {
   return (
