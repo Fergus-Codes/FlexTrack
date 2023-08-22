@@ -15,7 +15,7 @@ const Workouts = ({ workoutArray, setWorkout }) => {
 
   return (
     <div className="card-inner">
-      <h2>Current Exercises</h2>
+      <h2>Your workout</h2>
       {workoutArray.map((workout, i) => (
         <div>
           <p>

@@ -35,7 +35,8 @@ const PastWorkoutsPage = () => {
           recorded on the 'build workout page' I also need to get the date
           automatically from the date the user saved the workout. I need to
           display the name of the workout, the date, and the exercises that were
-          saved. ****
+          saved. I also need to be able to delete previous workouts from this
+          page****
         </h3>
         <div className="cards-wrap">
           {savedWorkouts.map((workout, index) => (

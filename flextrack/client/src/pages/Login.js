@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import LoginComponent from '../components/LoginComponent';
+import LoginComponent from "../components/LoginComponent";
 
 const Login = () => {
-    return (
-        <div className='App'>
-            <LoginComponent />
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1 className="header peak">🏋️‍♂️ FlexTrack 💪</h1>
+      <div className="App">
+        <LoginComponent />
+      </div>
+      <h1 className="header peak">Track your flex</h1>
+    </div>
+  );
+};
 
 export default Login;
