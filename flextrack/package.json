@@ -6,7 +6,8 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^5.8.0"
+    "mongodb": "^5.8.0",
+    "mongoose": "^7.4.4"
   },
   "scripts": {
     "start": "node server/server.js --ignore client",

@@ -4,13 +4,13 @@ import Button from "./Button";
 const Arms = ({ addExercise }) => {
   return (
     <div className="card-inner">
-      <h2>Arms</h2>
+      <h2>Arms </h2>
       <p>
-        Concentration Curls
+        Bicep Curls
         <Button addExercise={addExercise} />
       </p>
       <p>
-        Hammer Curls
+        Tricep Dips
         <Button addExercise={addExercise} />
       </p>
       <p>
@@ -18,11 +18,11 @@ const Arms = ({ addExercise }) => {
         <Button addExercise={addExercise} />
       </p>
       <p>
-        Overhead Press
+        Hammer Curls
         <Button addExercise={addExercise} />
       </p>
       <p>
-        Tricep Dips
+        Skull Crushers
         <Button addExercise={addExercise} />
       </p>
     </div>

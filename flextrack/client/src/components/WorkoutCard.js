@@ -1,6 +1,6 @@
 import React from "react";
 
-const WorkoutCard = ({ name, date, exercises, weight, reps }) => {
+const WorkoutCard = ({ id, name, date, exercises, onDelete }) => {
   return (
     <div className="workout-card">
       <h3>{name}</h3>
@@ -13,6 +13,9 @@ const WorkoutCard = ({ name, date, exercises, weight, reps }) => {
           </li>
         ))}
       </ul>
+      <button className="delete-button" onClick={() => onDelete(id)}>
+        Delete
+      </button>
     </div>
   );
 };

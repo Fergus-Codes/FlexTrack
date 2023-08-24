@@ -44,21 +44,41 @@ const resolvers = {
 
       return { token, user };
     },
-    addWorkout: async (parent, exercise, context) => {
-      const { _id } = await Workout.create(exercise);
-      const user = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        {
-          $addToSet: {
-            workout: _id,
-          },
-        }
-      );
 
-      return workout;
+    addWorkout: async (parent, args, context) => {
+      try {
+        const newWorkout = await Workout.create({});
+        return newWorkout;
+      } catch (error) {
+        console.log(error);
+      }
     },
+
     removeWorkout: async (parent, { workoutId }) => {
       return Workout.findOneAndDelete({ _id: workoutId });
+    },
+
+    // UPDATE WORKOUT NOT WORKING
+    updateWorkout: async (
+      parent,
+      { workoutId, workout_name, sets, reps, weight },
+      context
+    ) => {
+      const updatedWorkout = Workout.findByIdAndUpdate(
+        workoutId,
+        {
+          $addToSet: {
+            excercise: {
+              workout_name,
+              sets,
+              reps,
+              weight,
+            },
+          },
+        },
+        { new: true }
+      );
+      return updatedWorkout;
     },
   },
 };

@@ -1,50 +1,52 @@
-import React from "react";
-import PastWorkouts from "../components/PastWorkouts";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import WorkoutCard from "../components/WorkoutCard";
 
-const savedWorkouts = [
-  {
-    name: "Upper Body Workout",
-    date: "2023-08-20",
-    exercises: [
-      { name: "Bench Press", weight: 135, reps: 10 },
-      { name: "Pull-Ups", weight: 135, reps: 10 },
-      { name: "Shoulder Press", weight: 135, reps: 10 },
-    ],
-  },
-  {
-    name: "Leg Day",
-    date: "2023-08-22",
-    exercises: [
-      { name: "Squats", weight: 135, reps: 10 },
-      { name: "Deadlifts", weight: 135, reps: 10 },
-      { name: "Leg Press", weight: 135, reps: 10 },
-    ],
-  },
-  // Add more saved workouts here
-];
-
 const PastWorkoutsPage = () => {
+  const [savedWorkouts, setSavedWorkouts] = useState([
+    {
+      id: 1,
+      name: "Upper Body Workout",
+      date: "2023-08-20",
+      exercises: [
+        { name: "Bench Press", weight: 135, reps: 10 },
+        { name: "Pull-Ups", weight: 135, reps: 10 },
+        { name: "Shoulder Press", weight: 135, reps: 10 },
+      ],
+    },
+    {
+      id: 2,
+      name: "Leg Day",
+      date: "2023-08-22",
+      exercises: [
+        { name: "Squats", weight: 135, reps: 10 },
+        { name: "Deadlifts", weight: 135, reps: 10 },
+        { name: "Leg Press", weight: 135, reps: 10 },
+      ],
+    },
+  ]);
+
+  const handleDelete = (id) => {
+    const updatedWorkouts = savedWorkouts.filter(
+      (workout) => workout.id !== id
+    );
+    setSavedWorkouts(updatedWorkouts);
+  };
+
   return (
     <div>
       <div className="page-container">
         <h1 className="page-header">Your workout history</h1>
-        <h3>
-          **** On this page i need to display the saved workouts that the user
-          recorded on the 'build workout page' I also need to get the date
-          automatically from the date the user saved the workout. I need to
-          display the name of the workout, the date, and the exercises that were
-          saved. I also need to be able to delete previous workouts from this
-          page****
-        </h3>
+        <h3>{/* Your text here */}</h3>
         <div className="cards-wrap">
-          {savedWorkouts.map((workout, index) => (
+          {savedWorkouts.map((workout) => (
             <WorkoutCard
-              key={index}
+              key={workout.id}
+              id={workout.id}
               name={workout.name}
               date={workout.date}
               exercises={workout.exercises}
+              onDelete={handleDelete}
             />
           ))}
         </div>
