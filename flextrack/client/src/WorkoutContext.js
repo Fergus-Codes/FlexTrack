@@ -1,23 +1,22 @@
+// WorkoutContext.js (example)
 import React, { createContext, useContext, useState } from "react";
 
 const WorkoutContext = createContext();
 
-export const useWorkoutContext = () => {
-  return useContext(WorkoutContext);
-};
-
 export const WorkoutProvider = ({ children }) => {
-  const [savedWorkouts, setSavedWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
-  const saveWorkout = (workout) => {
-    setSavedWorkouts([...savedWorkouts, workout]);
+  const saveWorkout = (newWorkout) => {
+    setWorkouts([...workouts, newWorkout]);
   };
 
   return (
-    <WorkoutContext.Provider value={{ savedWorkouts, saveWorkout }}>
+    <WorkoutContext.Provider value={{ workouts, saveWorkout }}>
       {children}
     </WorkoutContext.Provider>
   );
 };
 
-export default WorkoutContext;
+export const useWorkoutContext = () => {
+  return useContext(WorkoutContext);
+};

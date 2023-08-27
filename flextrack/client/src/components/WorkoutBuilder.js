@@ -26,6 +26,38 @@ const WorkoutBuilder = () => {
     setWeights(newWeights);
   };
 
+  const handleSaveClick = async () => {
+    const workoutData = {};
+    workoutData.sets = numSets;
+    workoutData.reps = reps;
+    workoutData.weights = weights;
+
+    try {
+      const response = await fetch("/api/saveWorkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workoutData),
+      });
+
+      if (response.ok) {
+        const savedWorkout = await response.json();
+
+        // Call a function to update the context with the new workout
+        saveWorkout(savedWorkout);
+
+        // Handle successful response, e.g., show a success message
+      } else {
+        // Handle error response
+        const errorData = await response.json();
+        console.error("Error:", errorData.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div>
       <label className="workout-builder-input-label" htmlFor="numSets">
@@ -80,6 +112,10 @@ const WorkoutBuilder = () => {
             />
           </div>
         ))}
+      </div>
+
+      <div>
+        <button onClick={handleSaveClick}>Save</button>
       </div>
     </div>
   );

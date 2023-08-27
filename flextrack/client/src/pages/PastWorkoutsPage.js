@@ -6,7 +6,7 @@ const PastWorkoutsPage = () => {
   const [savedWorkouts, setSavedWorkouts] = useState([
     {
       id: 1,
-      name: "Upper Body Workout",
+      name: "Workout #2",
       date: "2023-08-20",
       exercises: [
         { name: "Bench Press", weight: 135, reps: 10 },
@@ -16,7 +16,7 @@ const PastWorkoutsPage = () => {
     },
     {
       id: 2,
-      name: "Leg Day",
+      name: "Workout #1",
       date: "2023-08-22",
       exercises: [
         { name: "Squats", weight: 135, reps: 10 },
@@ -54,6 +54,7 @@ const PastWorkoutsPage = () => {
 
       <div className="footer2">
         <Link to="/dashboard">Back to Dashboard</Link>
+        <Link to="/login">Logout</Link>
       </div>
     </div>
   );

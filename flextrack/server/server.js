@@ -10,7 +10,26 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: ({ req }) => {
+    // Include the authMiddleware context
+    const context = authMiddleware(req);
+
+    // Include the saveWorkout function
+    context.saveWorkout = async (workoutData) => {
+      try {
+        // You can use your database models and functions here to save workoutData
+        // For example, assuming you have a Workout model defined:
+        // const savedWorkout = await Workout.create(workoutData);
+
+        return savedWorkout; // Return the saved workout if needed
+      } catch (error) {
+        console.error("Error saving workout:", error);
+        throw new Error("Error saving workout data.");
+      }
+    };
+
+    return context;
+  },
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +41,22 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
   });
 }
+
+app.post("/api/saveWorkout", async (req, res) => {
+  const workoutData = req.body;
+
+  try {
+    // You can use your database models and functions here to save workoutData
+    // For example, assuming you have a Workout model defined:
+    // const savedWorkout = await Workout.create(workoutData);
+
+    // Send a success response
+    res.status(200).json({ message: "Workout data saved successfully." });
+  } catch (error) {
+    console.error("Error saving workout:", error);
+    res.status(500).json({ message: "Error saving workout data." });
+  }
+});
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

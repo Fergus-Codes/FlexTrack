@@ -29,15 +29,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError(
-          "A user with this email address does not exist!"
-        );
+        throw new AuthenticationError("No user found with this address");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials!");
+        throw new AuthenticationError("Incorrect username or password");
       }
 
       const token = signToken(user);
@@ -59,26 +57,49 @@ const resolvers = {
     },
 
     // UPDATE WORKOUT NOT WORKING
+
     updateWorkout: async (
       parent,
-      { workoutId, workout_name, sets, reps, weight },
+      {
+        workoutId,
+        workout_name,
+        sets,
+        reps1,
+        weight1,
+        reps2,
+        weight2,
+        reps3,
+        weight3,
+        reps4,
+        weight4,
+        reps5,
+        weight5,
+      },
       context
     ) => {
-      const updatedWorkout = Workout.findByIdAndUpdate(
+      const createdWorkout = Workout.findOneAndUpdate(
         workoutId,
         {
           $addToSet: {
             excercise: {
               workout_name,
               sets,
-              reps,
-              weight,
+              reps1,
+              weight1,
+              reps2,
+              weight2,
+              reps3,
+              weight3,
+              reps4,
+              weight4,
+              reps5,
+              weight5,
             },
           },
         },
         { new: true }
       );
-      return updatedWorkout;
+      return createdWorkout;
     },
   },
 };

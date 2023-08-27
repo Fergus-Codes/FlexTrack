@@ -24,6 +24,8 @@ const BuildWorkout = (props) => {
   return (
     <header>
       <h1 className="header">Create your workout</h1>
+      <h2 className="createworkout-h2">⬇️ Select your exercises ⬇️</h2>
+
       <div className="cards-wrap">
         <div className="card">
           <Back addExercise={addExercise} />
@@ -51,6 +53,7 @@ const BuildWorkout = (props) => {
       <div className="footer2">
         <Link to="/dashboard">Back to dashboard</Link>
         <Link to="/todaysworkout">Start your workout</Link>
+        <Link to="/login">Logout</Link>
       </div>
     </header>
   );

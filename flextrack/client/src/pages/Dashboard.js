@@ -2,6 +2,7 @@ import React from "react";
 import MyProfile from "../components/MyProfile";
 import DashboardWorkout from "../components/DashboardWorkout";
 import History from "../components/History";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -16,7 +17,12 @@ const Dashboard = () => {
           <History />
         </div>
       </div>
-      <h3 className="footer">Your #1 Gym companion</h3>
+      <div className="footer2">
+        <h3 className="footer2">Your #1 Gym companion</h3>
+        <Link to="/login">
+          <h3>Logout</h3>
+        </Link>
+      </div>
     </header>
   );
 };

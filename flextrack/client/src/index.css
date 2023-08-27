@@ -275,3 +275,10 @@ body {
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
 }
+
+.createworkout-h2 {
+  text-align: center;
+  margin: 10px;
+  color: #000000;
+  align-items: center;
+}

@@ -6,13 +6,34 @@ const exerciseSchema = new Schema({
     type: String,
     required: true,
   },
-  sets: {
+  reps1: {
     type: Number,
   },
-  reps: {
+  weight1: {
     type: Number,
   },
-  weight: {
+  reps2: {
+    type: Number,
+  },
+  weight2: {
+    type: Number,
+  },
+  reps3: {
+    type: Number,
+  },
+  weight3: {
+    type: Number,
+  },
+  reps4: {
+    type: Number,
+  },
+  weight4: {
+    type: Number,
+  },
+  reps5: {
+    type: Number,
+  },
+  weight5: {
     type: Number,
   },
 });
