@@ -25,7 +25,9 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
+      console.log(email, password);
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -77,7 +79,7 @@ const resolvers = {
       },
       context
     ) => {
-      const createdWorkout = Workout.findOneAndUpdate(
+      const createdWorkout = Workout.create(
         workoutId,
         {
           $addToSet: {

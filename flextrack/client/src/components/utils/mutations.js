@@ -31,19 +31,22 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-mutation addWorkout($exercise : [Exercises]!) {
-  addWorkout(exercise: $exercise){
-    createdAt
-    exercise {
+  mutation addWorkout($exercise: [Exercises]!) {
+    addWorkout(exercise: $exercise) {
+      createdAt
+      workoutId
       workout_name
-      muscles_worked
-      equipments
-      description
       sets
-      reps
-      weight
+      reps1
+      weight1
+      reps2
+      weight2
+      reps3
+      weight3
+      reps4
+      weight4
+      reps5
+      weight5
     }
-
-  } 
-}
-`
+  }
+`;

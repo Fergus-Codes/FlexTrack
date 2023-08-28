@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useWorkoutContext } from "../WorkoutContext";
+import { ADD_WORKOUT } from "./utils/mutations";
+import { useMutation } from "@apollo/client";
 
 const WorkoutBuilder = () => {
   const { saveWorkout } = useWorkoutContext();
   const [numSets, setNumSets] = useState(1);
   const [reps, setReps] = useState([]);
   const [weights, setWeights] = useState([]);
+  const [workout, { error }] = useMutation(ADD_WORKOUT);
 
   const handleNumSetsChange = (event) => {
     const newNumSets = parseInt(event.target.value);
@@ -27,35 +30,79 @@ const WorkoutBuilder = () => {
   };
 
   const handleSaveClick = async () => {
-    const workoutData = {};
-    workoutData.sets = numSets;
-    workoutData.reps = reps;
-    workoutData.weights = weights;
+    if (numSets > 1) {
+      reps.push(document.getElementById("reps1").value || 0);
+      console.log(reps);
+      weights.push(document.getElementById("weight1").value || 0);
+      console.log(weights);
 
-    try {
-      const response = await fetch("/api/saveWorkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(workoutData),
-      });
+      reps.push(document.getElementById("reps2").value || 0);
+      console.log(reps);
+      weights.push(document.getElementById("weight2").value || 0);
+      console.log(weights);
 
-      if (response.ok) {
-        const savedWorkout = await response.json();
+      reps.push(document.getElementById("reps3").value || 0);
+      console.log(reps);
+      weights.push(document.getElementById("weight3").value || 0);
+      console.log(weights);
 
-        // Call a function to update the context with the new workout
-        saveWorkout(savedWorkout);
+      reps.push(document.getElementById("reps4").value || 0);
+      console.log(reps);
+      weights.push(document.getElementById("weight4").value || 0);
+      console.log(weights);
 
-        // Handle successful response, e.g., show a success message
-      } else {
-        // Handle error response
-        const errorData = await response.json();
-        console.error("Error:", errorData.message);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+      reps.push(document.getElementById("reps5").value || 0);
+      console.log(reps);
+      weights.push(document.getElementById("weight5").value || 0);
+      console.log(weights);
     }
+
+    workout({
+      variables: {
+        workout_name: "",
+        sets: numSets,
+        reps1: reps[0],
+        weight1: weights[0],
+        reps2: reps[1],
+        weight2: weights[1],
+        reps3: reps[2],
+        weight3: weights[2],
+        reps4: reps[3],
+        weight4: weights[3],
+        reps5: reps[4],
+        weight5: weights[4],
+      },
+    });
+
+    // const workoutData = {};
+    // workoutData.sets = numSets;
+    // workoutData.reps = reps;
+    // workoutData.weights = weights;
+
+    // try {
+    //   const response = await fetch("/api/saveWorkout", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(workoutData),
+    //   });
+
+    //   if (response.ok) {
+    //     const savedWorkout = await response.json();
+
+    //     // Call a function to update the context with the new workout
+    //     saveWorkout(savedWorkout);
+
+    //     // Handle successful response, e.g., show a success message
+    //   } else {
+    //     // Handle error response
+    //     const errorData = await response.json();
+    //     console.error("Error:", errorData.message);
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
   };
 
   return (

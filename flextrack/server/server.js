@@ -10,26 +10,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
-    // Include the authMiddleware context
-    const context = authMiddleware(req);
-
-    // Include the saveWorkout function
-    context.saveWorkout = async (workoutData) => {
-      try {
-        // You can use your database models and functions here to save workoutData
-        // For example, assuming you have a Workout model defined:
-        // const savedWorkout = await Workout.create(workoutData);
-
-        return savedWorkout; // Return the saved workout if needed
-      } catch (error) {
-        console.error("Error saving workout:", error);
-        throw new Error("Error saving workout data.");
-      }
-    };
-
-    return context;
-  },
+  context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: false }));
